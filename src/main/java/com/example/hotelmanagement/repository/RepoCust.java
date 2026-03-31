@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepoCust extends JpaRepository<UserCustM,Long> {
     UserCustM findByEmail(String email);
-    UserCustM findByEmailandPass(String email,String pass);
+    UserCustM findByEmailAndPass(String email,String pass);
 }

@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface Repo extends JpaRepository<UserM,Long> {
 UserM findByEmail(String email);
-UserM findByEmailandPass(String email,String pass);
+UserM findByEmailAndPass(String email,String pass);
 }

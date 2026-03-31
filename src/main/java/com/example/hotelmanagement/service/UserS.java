@@ -22,7 +22,7 @@ public class UserS {
         }
     }
     public Map<String,Object> log(UserM userM){
-        UserM exist=repo.findByEmailandPass(userM.getEmail(),userM.getPass());
+        UserM exist=repo.findByEmailAndPass(userM.getEmail(),userM.getPass());
         if(exist!=null){
             return Map.of("status","success");
         }
