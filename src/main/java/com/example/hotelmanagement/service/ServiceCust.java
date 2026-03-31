@@ -5,6 +5,8 @@ import com.example.hotelmanagement.repository.RepoCust;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class ServiceCust {
     @Autowired
@@ -19,5 +21,4 @@ public class ServiceCust {
             return "User Saved Successfully";
         }
     }
-
 }

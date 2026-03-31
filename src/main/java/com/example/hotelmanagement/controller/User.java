@@ -18,5 +18,8 @@ public class User {
 public ResponseEntity<?>register(@RequestBody UserM userM){
     return ResponseEntity.ok(userS.reg_Create(userM));
 }
-
+@PostMapping("/hlog")
+    public ResponseEntity<?>logg(@RequestBody UserM userM){
+    return ResponseEntity.ok((userS.log(userM)));
+}
 }
