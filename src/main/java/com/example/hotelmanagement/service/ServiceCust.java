@@ -21,4 +21,13 @@ public class ServiceCust {
             return "User Saved Successfully";
         }
     }
+    public Map<String,Object>log(UserCustM userCustM){
+        UserCustM exist=repoCust.findByEmailandPass(userCustM.getEmail(),userCustM.getPass());
+        if(exist!=null){
+            return Map.of("status","success");
+        }
+        else {
+            return Map.of("status","failes");
+        }
+    }
 }
