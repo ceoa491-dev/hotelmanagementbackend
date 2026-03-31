@@ -21,8 +21,9 @@ public class UserCust {
     public ResponseEntity<?>cregister(@RequestBody UserCustM userCustM){
     return ResponseEntity.ok(serviceCust.cregis(userCustM));
 }
-@PostMapping("clog")
+@PostMapping("/clog")
     public ResponseEntity<?>logg(@RequestBody UserCustM userCustM){
     return ResponseEntity.ok(serviceCust.log(userCustM));
 }
+
 }
