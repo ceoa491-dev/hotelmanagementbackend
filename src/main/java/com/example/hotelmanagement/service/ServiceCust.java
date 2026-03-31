@@ -15,6 +15,7 @@ public class ServiceCust {
             return "User Already Exist";
         }
         else{
+            repoCust.save(userCustM);
             return "User Saved Successfully";
         }
     }
