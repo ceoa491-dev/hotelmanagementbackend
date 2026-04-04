@@ -28,7 +28,8 @@ public class UserS {
                     "hname",exist.getHname(),
                     "name",exist.getName(),
                     "email",exist.getEmail(),
-                    "phone",exist.getPhone());
+                    "phone",exist.getPhone(),
+                    "hnamecap",exist.getHname());
         }
         else{
             return Map.of("status","failed");
