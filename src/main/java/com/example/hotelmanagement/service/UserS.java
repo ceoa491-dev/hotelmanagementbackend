@@ -24,7 +24,11 @@ public class UserS {
     public Map<String,Object> log(UserM userM){
         UserM exist=repo.findByEmailAndPass(userM.getEmail(),userM.getPass());
         if(exist!=null){
-            return Map.of("status","success");
+            return Map.of("status","success",
+                    "hname",exist.getHname(),
+                    "name",exist.getName(),
+                    "email",exist.getEmail(),
+                    "phone",exist.getPhone());
         }
         else{
             return Map.of("status","failed");
