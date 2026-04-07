@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RoomService {
@@ -17,25 +16,46 @@ public class RoomService {
     private HotelRoomsRepo hotelRoomsRepo;
     @Autowired
     private RoomImageRepo roomImageRepo;
-    public Map<String,String>saveroom(String txtno, String txtprice, List<MultipartFile>images){
+
+    public Map<String, String> saveroom(String txtno, String txtprice, List<MultipartFile> images) {
         try {
-            HotelRooms hotelRooms=new HotelRooms();
+            HotelRooms hotelRooms = new HotelRooms();
             hotelRooms.setTxtno(txtno);
             hotelRooms.setTxtprice(txtprice);
-            HotelRooms hotelRoomssaved=hotelRoomsRepo.save(hotelRooms);
-            for(MultipartFile file:images){
-                HotelRoomsImage hotelRoomsImage=new HotelRoomsImage();
+            HotelRooms hotelRoomssaved = hotelRoomsRepo.save(hotelRooms);
+            for (MultipartFile file : images) {
+                HotelRoomsImage hotelRoomsImage = new HotelRoomsImage();
                 hotelRoomsImage.setRoomId(hotelRoomssaved.getId());
                 hotelRoomsImage.setImage(file.getBytes());
                 roomImageRepo.save(hotelRoomsImage);
             }
-            return Map.of("status","success");
-        }catch (Exception e){
+            return Map.of("status", "success");
+        } catch (Exception e) {
             e.printStackTrace();
-            return Map.of("status","error");
+            return Map.of("status", "error");
         }
 
 
     }
 
+    public List<Map<String, Object>> getAllrooms() {
+        List<Map<String, Object>> result = new ArrayList<>();
+        List<HotelRooms> rooms = hotelRoomsRepo.findAll();
+        for (HotelRooms room : rooms) {
+            List<HotelRoomsImage> images = roomImageRepo.findByRoomId(room.getId());
+            List<String> imageList = new ArrayList<>();
+            for (HotelRoomsImage imgs : images) {
+                    String base64 = Base64.getEncoder().encodeToString(imgs.getImage());
+                 imageList.add(base64);
+                }
+            Map<String,Object>roomData=new HashMap<>();
+            roomData.put("txtno",room.getTxtno());
+            roomData.put("txtprice",room.getTxtprice());
+            roomData.put("images",imageList);
+            result.add(roomData);
+
+        }
+return result;
+
+    }
 }

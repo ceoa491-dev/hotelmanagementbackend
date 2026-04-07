@@ -2,12 +2,10 @@ package com.example.hotelmanagement.controller;
 
 import com.example.hotelmanagement.model.HotelRooms;
 import com.example.hotelmanagement.service.RoomService;
+import jakarta.persistence.GeneratedValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -22,5 +20,9 @@ public class RoomController {
                                      @RequestParam("txtprice") String txtprice,
                                      @RequestParam("images") List<MultipartFile> images){
 return ResponseEntity.ok(roomService.saveroom(txtno,txtprice,images));
+    }
+    @GetMapping("/getroom")
+    public ResponseEntity<?>getrooms(){
+        return ResponseEntity.ok(roomService.getAllrooms());
     }
 }
