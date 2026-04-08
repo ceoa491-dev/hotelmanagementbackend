@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FoodImageRepo extends JpaRepository<FoodImageModel,Long> {
-    List<HotelRoomsImage>findByFoodId(Long foodId);
+    List<FoodImageModel>findByFoodId(Long foodId);
 }
