@@ -22,6 +22,6 @@ public class FoodController {
     }
     @GetMapping("/getfood")
     public ResponseEntity<?>getfood(){
-        return ResponseEntity.ok();
+        return ResponseEntity.ok(foodService.getfoods());
     }
 }
