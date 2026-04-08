@@ -48,7 +48,8 @@ public class FoodService {
             Map<String,Object>foodData=new HashMap<>();
             foodData.put("dis",food.getDis());
             foodData.put("disprice",food.getDisprice());
-            foodData.put("image",imageList);
+            foodData.put("images",imageList);
+            result.add(foodData);
         }
         return result;
     }
