@@ -24,7 +24,10 @@ public class ServiceCust {
     public Map<String,Object>log(UserCustM userCustM){
         UserCustM exist=repoCust.findByEmailAndPass(userCustM.getEmail(),userCustM.getPass());
         if(exist!=null){
-            return Map.of("status","success");
+            return Map.of("status","success",
+                    "email",exist.getEmail(),
+                    "name",exist.getName(),
+                    "phone",exist.getPhone());
         }
         else {
             return Map.of("status","failes");
