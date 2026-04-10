@@ -4,4 +4,5 @@ import com.example.hotelmanagement.model.RoomReservedModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoomReservedRepo extends JpaRepository<RoomReservedModel,Long> {
+    RoomReservedModel findByEmailAndName(String email,String name);
 }
