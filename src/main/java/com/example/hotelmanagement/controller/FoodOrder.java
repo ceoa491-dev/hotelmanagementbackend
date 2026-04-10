@@ -20,7 +20,7 @@ public class FoodOrder {
     return ResponseEntity.ok(foodOrderService.getfoods(email,name,hemail));
     }
     @GetMapping("/getfoodsh")
-    public ResponseEntity<?>getorfoodshh(@RequestParam String hname){
-        return ResponseEntity.ok(foodOrderService.getfoodshh(hname));
+    public ResponseEntity<?>getorfoodshh(@RequestParam String hemail){
+        return ResponseEntity.ok(foodOrderService.getfoodshh(hemail));
     }
 }
