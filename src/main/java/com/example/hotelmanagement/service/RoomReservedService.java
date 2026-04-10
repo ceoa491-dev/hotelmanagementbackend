@@ -5,6 +5,7 @@ import com.example.hotelmanagement.repository.RoomReservedRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -21,12 +22,10 @@ public class RoomReservedService {
                 "email",rvs.getEmail());
     }
     public Map<String,Object>getallrooms(String email,String name){
-        RoomReservedModel exist=roomReservedRepo.findByEmailAndName(email,name);
-        if(exist!=null){
+        List<RoomReservedModel>rooms=roomReservedRepo.findByEmailAndName(email,name);
+        if(!rooms.isEmpty()){
             return Map.of("status","success",
-                    "message","data retrived successfull",
-                    "room",exist.getRoom(),
-                    "roomprice",exist.getRoomprice());
+                    "data",rooms);
         }
         else {
             return Map.of("Status","Failed",
