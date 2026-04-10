@@ -5,4 +5,5 @@ import com.example.hotelmanagement.model.FoodOrderModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FoodOrderRepo extends JpaRepository<FoodOrderModel,Long> {
+
 }

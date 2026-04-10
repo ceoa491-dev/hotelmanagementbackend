@@ -12,8 +12,12 @@ public class FoodOrderService {
     @Autowired
     private FoodOrderRepo foodOrderRepo;
     public Map<String,Object> saveorder(FoodOrderModel foodOrderModel){
-        foodOrderRepo.save(foodOrderModel);
-        return Map.of("status","success",
-                "message","Order Placed Successfully");
-    }
+            FoodOrderModel fo = foodOrderRepo.save(foodOrderModel);
+            return Map.of("status", "success",
+                    "message", "Order Placed Successfully",
+                    "dish", fo.getDisname(),
+                    "disprice", fo.getDisprice(),
+                    "email",fo.getEmail());
+        }
+
 }
