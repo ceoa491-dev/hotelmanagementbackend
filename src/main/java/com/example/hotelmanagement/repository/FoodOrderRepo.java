@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FoodOrderRepo extends JpaRepository<FoodOrderModel,Long> {
-List<FoodOrderModel>findByEmailAndName(String email,String name);
+List<FoodOrderModel>findByEmailAndNameAndHemail(String email,String name,String hemail);
 }

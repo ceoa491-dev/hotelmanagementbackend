@@ -21,8 +21,8 @@ public class RoomReservedService {
                 "name",rvs.getName(),
                 "email",rvs.getEmail());
     }
-    public Map<String,Object>getallrooms(String email,String name){
-        List<RoomReservedModel>rooms=roomReservedRepo.findByEmailAndName(email,name);
+    public Map<String,Object>getallrooms(String email,String name,String hemail){
+        List<RoomReservedModel>rooms=roomReservedRepo.findByEmailAndNameAndHemail(email,name,hemail);
         if(!rooms.isEmpty()){
             return Map.of("status","success",
                     "data",rooms);

@@ -16,7 +16,7 @@ public class FoodOrder {
         return ResponseEntity.ok(foodOrderService.saveorder(foodOrderModel));
     }
     @GetMapping("/getfoods")
-    public ResponseEntity<?>getorfoods(@RequestParam String email,@RequestParam String name){
-    return ResponseEntity.ok(foodOrderService.getfoods(email,name));
+    public ResponseEntity<?>getorfoods(@RequestParam String email,@RequestParam String name,@RequestParam String hname){
+    return ResponseEntity.ok(foodOrderService.getfoods(email,name,hname));
     }
 }

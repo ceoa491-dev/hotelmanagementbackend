@@ -58,4 +58,14 @@ public class FoodOrderModel {
     }
 
     private String email;
+
+    public String getHemail() {
+        return hemail;
+    }
+
+    public void setHemail(String hemail) {
+        this.hemail = hemail;
+    }
+
+    private String hemail;
 }

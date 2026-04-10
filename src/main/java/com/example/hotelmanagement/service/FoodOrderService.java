@@ -19,11 +19,12 @@ public class FoodOrderService {
                 "message", "Order Placed Successfully",
                 "dish", fo.getDisname(),
                 "disprice", fo.getDisprice(),
-                "email", fo.getEmail());
+                "email", fo.getEmail(),
+                "hemail",fo.getHemail());
     }
 
-    public Map<String, Object> getfoods(String email, String name) {
-        List<FoodOrderModel> food = foodOrderRepo.findByEmailAndName(email, name);
+    public Map<String, Object> getfoods(String email, String name,String hemail) {
+        List<FoodOrderModel> food = foodOrderRepo.findByEmailAndNameAndHemail(email, name,hemail);
         if (!food.isEmpty()) {
             return Map.of("status", "success",
                     "data", food);

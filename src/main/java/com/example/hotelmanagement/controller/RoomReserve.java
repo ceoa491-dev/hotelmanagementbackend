@@ -16,7 +16,7 @@ public ResponseEntity<?>reservroom(@RequestBody RoomReservedModel roomReservedMo
     return ResponseEntity.ok(roomReservedService.resroom(roomReservedModel));
 }
 @GetMapping("/getresroom")
-    public ResponseEntity<?>getresrooms(@RequestParam String email,@RequestParam String name){
-    return ResponseEntity.ok(roomReservedService.getallrooms(email,name));
+    public ResponseEntity<?>getresrooms(@RequestParam String email,@RequestParam String name,@RequestParam String hemail){
+    return ResponseEntity.ok(roomReservedService.getallrooms(email,name,hemail));
     }
 }
