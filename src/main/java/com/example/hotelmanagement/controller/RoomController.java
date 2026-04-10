@@ -18,11 +18,12 @@ public class RoomController {
     @PostMapping("/addroom")
     public ResponseEntity<?> addRoom(@RequestParam("txtno") String txtno,
                                      @RequestParam("txtprice") String txtprice,
+                                     @RequestParam("email") String email,
                                      @RequestParam("images") List<MultipartFile> images){
-return ResponseEntity.ok(roomService.saveroom(txtno,txtprice,images));
+return ResponseEntity.ok(roomService.saveroom(txtno,txtprice,email,images));
     }
     @GetMapping("/getroom")
-    public ResponseEntity<?>getrooms(){
-        return ResponseEntity.ok(roomService.getAllrooms());
+    public ResponseEntity<?>getrooms(@RequestParam("email") String email){
+        return ResponseEntity.ok(roomService.getAllrooms(email));
     }
 }

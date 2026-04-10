@@ -39,4 +39,14 @@ public class FoodModel {
 
     private String dis;
     private String disprice;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
 }

@@ -17,11 +17,12 @@ public class RoomService {
     @Autowired
     private RoomImageRepo roomImageRepo;
 
-    public Map<String, String> saveroom(String txtno, String txtprice, List<MultipartFile> images) {
+    public Map<String, String> saveroom(String txtno, String txtprice, String email, List<MultipartFile> images) {
         try {
             HotelRooms hotelRooms = new HotelRooms();
             hotelRooms.setTxtno(txtno);
             hotelRooms.setTxtprice(txtprice);
+            hotelRooms.setEmail(email);
             HotelRooms hotelRoomssaved = hotelRoomsRepo.save(hotelRooms);
             for (MultipartFile file : images) {
                 HotelRoomsImage hotelRoomsImage = new HotelRoomsImage();
@@ -38,24 +39,29 @@ public class RoomService {
 
     }
 
-    public List<Map<String, Object>> getAllrooms() {
+    public List<Map<String, Object>> getAllrooms(String email) {
         List<Map<String, Object>> result = new ArrayList<>();
-        List<HotelRooms> rooms = hotelRoomsRepo.findAll();
-        for (HotelRooms room : rooms) {
-            List<HotelRoomsImage> images = roomImageRepo.findByRoomId(room.getId());
-            List<String> imageList = new ArrayList<>();
-            for (HotelRoomsImage imgs : images) {
+        List<HotelRooms> rooms = hotelRoomsRepo.findByEmail(email);
+        if (!rooms.isEmpty()) {
+            for (HotelRooms room : rooms) {
+                List<HotelRoomsImage> images = roomImageRepo.findByRoomId(room.getId());
+                List<String> imageList = new ArrayList<>();
+                for (HotelRoomsImage imgs : images) {
                     String base64 = Base64.getEncoder().encodeToString(imgs.getImage());
-                 imageList.add(base64);
+                    imageList.add(base64);
                 }
-            Map<String,Object>roomData=new HashMap<>();
-            roomData.put("txtno",room.getTxtno());
-            roomData.put("txtprice",room.getTxtprice());
-            roomData.put("images",imageList);
-            result.add(roomData);
+                Map<String, Object> roomData = new HashMap<>();
+                roomData.put("txtno", room.getTxtno());
+                roomData.put("txtprice", room.getTxtprice());
+                roomData.put("email", room.getEmail());
+                roomData.put("images", imageList);
+                result.add(roomData);
+
+            }
+            return result;
+        }else {
+            return result;
+        }
 
         }
-return result;
-
     }
-}

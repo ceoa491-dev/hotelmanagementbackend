@@ -16,11 +16,12 @@ public class FoodService {
     private FoodRepo foodRepo;
     @Autowired
     private FoodImageRepo foodImageRepo;
-    public Map<String,String>savingfood(String dis, String disprice, List<MultipartFile> images){
+    public Map<String,String>savingfood(String dis, String disprice,String email, List<MultipartFile> images){
         try{
             FoodModel foodModel=new FoodModel();
             foodModel.setDis(dis);
             foodModel.setDisprice(disprice);
+            foodModel.setEmail(email);
             FoodModel foodsaved=foodRepo.save(foodModel);
             for(MultipartFile file :images){
                 FoodImageModel foodImageModel=new FoodImageModel();
@@ -35,22 +36,27 @@ public class FoodService {
             return Map.of("status","Error");
         }
     }
-    public List<Map<String,Object>>getfoods(){
+    public List<Map<String,Object>>getfoods(String email){
         List<Map<String,Object>>result=new ArrayList<>();
-        List<FoodModel>foods=foodRepo.findAll();
-        for(FoodModel food:foods){
-            List<FoodImageModel>imgf=foodImageRepo.findByFoodId(food.getId());
-            List<String>imageList=new ArrayList<>();
-            for(FoodImageModel imgff:imgf){
-                String base64= Base64.getEncoder().encodeToString(imgff.getImage());
-                imageList.add(base64);
+        List<FoodModel>foods=foodRepo.findByEmail(email);
+        if(!foods.isEmpty()) {
+            for (FoodModel food : foods) {
+                List<FoodImageModel> imgf = foodImageRepo.findByFoodId(food.getId());
+                List<String> imageList = new ArrayList<>();
+                for (FoodImageModel imgff : imgf) {
+                    String base64 = Base64.getEncoder().encodeToString(imgff.getImage());
+                    imageList.add(base64);
+                }
+                Map<String, Object> foodData = new HashMap<>();
+                foodData.put("dis", food.getDis());
+                foodData.put("disprice", food.getDisprice());
+                foodData.put("email",food.getEmail());
+                foodData.put("images", imageList);
+                result.add(foodData);
             }
-            Map<String,Object>foodData=new HashMap<>();
-            foodData.put("dis",food.getDis());
-            foodData.put("disprice",food.getDisprice());
-            foodData.put("images",imageList);
-            result.add(foodData);
+            return result;
+        }else {
+            return result;
         }
-        return result;
     }
 }

@@ -38,4 +38,14 @@ public class HotelRooms {
     private long id;
     private String txtno;
     private String txtprice;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    private String email;
 }

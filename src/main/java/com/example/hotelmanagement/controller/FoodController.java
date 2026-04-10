@@ -17,11 +17,12 @@ public class FoodController {
     @PostMapping("/addfood")
     public ResponseEntity<?>savef(@RequestParam("dis") String dis,
                                   @RequestParam("disprice") String disprice,
+                                  @RequestParam("email") String email,
                                   @RequestParam("images")List<MultipartFile>images){
-        return ResponseEntity.ok(foodService.savingfood(dis,disprice,images));
+        return ResponseEntity.ok(foodService.savingfood(dis,disprice,email,images));
     }
     @GetMapping("/getfood")
-    public ResponseEntity<?>getfood(){
-        return ResponseEntity.ok(foodService.getfoods());
+    public ResponseEntity<?>getfood(@RequestParam("email") String email){
+        return ResponseEntity.ok(foodService.getfoods(email));
     }
 }
