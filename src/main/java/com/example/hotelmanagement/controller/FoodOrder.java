@@ -19,4 +19,8 @@ public class FoodOrder {
     public ResponseEntity<?>getorfoods(@RequestParam String email,@RequestParam String name,@RequestParam String hname){
     return ResponseEntity.ok(foodOrderService.getfoods(email,name,hname));
     }
+    @GetMapping("/getfoodsh")
+    public ResponseEntity<?>getorfoodshh(@RequestParam String hname){
+        return ResponseEntity.ok(foodOrderService.getfoodshh(hname));
+    }
 }

@@ -32,5 +32,16 @@ public class RoomReservedService {
                     "message","no data found");
         }
     }
+    public Map<String,Object>getallroomshh(String hemail){
+        List<RoomReservedModel>rooms=roomReservedRepo.findByHemail(hemail);
+        if(!rooms.isEmpty()){
+            return Map.of("status","success",
+                    "data",rooms);
+        }
+        else {
+            return Map.of("Status","Failed",
+                    "message","no data found");
+        }
+    }
 
 }

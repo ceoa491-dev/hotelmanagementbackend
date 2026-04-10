@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FoodOrderRepo extends JpaRepository<FoodOrderModel,Long> {
 List<FoodOrderModel>findByEmailAndNameAndHemail(String email,String name,String hemail);
+List<FoodOrderModel>findByHemail(String hemail);
 }

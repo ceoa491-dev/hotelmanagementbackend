@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RoomReservedRepo extends JpaRepository<RoomReservedModel,Long> {
     List<RoomReservedModel> findByEmailAndNameAndHemail(String email, String name,String hemail);
+    List<RoomReservedModel>findByHemail(String hemail);
 }

@@ -34,4 +34,15 @@ public class FoodOrderService {
         }
 
     }
+    public Map<String, Object> getfoodshh(String hemail) {
+        List<FoodOrderModel> food = foodOrderRepo.findByHemail(hemail);
+        if (!food.isEmpty()) {
+            return Map.of("status", "success",
+                    "data", food);
+        } else {
+            return Map.of("status", "failed",
+                    "message", "no food orders found");
+        }
+
+    }
 }
