@@ -4,10 +4,7 @@ import com.example.hotelmanagement.model.FoodOrderModel;
 import com.example.hotelmanagement.service.FoodOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -17,5 +14,9 @@ public class FoodOrder {
     @PostMapping("/order")
     public ResponseEntity<?>getuserorder(@RequestBody FoodOrderModel foodOrderModel){
         return ResponseEntity.ok(foodOrderService.saveorder(foodOrderModel));
+    }
+    @GetMapping("/getfoods")
+    public ResponseEntity<?>getorfoods(@RequestParam String email,@RequestParam String name){
+    return ResponseEntity.ok(foodOrderService.getfoods(email,name));
     }
 }

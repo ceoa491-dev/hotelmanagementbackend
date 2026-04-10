@@ -5,19 +5,32 @@ import com.example.hotelmanagement.repository.FoodOrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class FoodOrderService {
     @Autowired
     private FoodOrderRepo foodOrderRepo;
-    public Map<String,Object> saveorder(FoodOrderModel foodOrderModel){
-            FoodOrderModel fo = foodOrderRepo.save(foodOrderModel);
+
+    public Map<String, Object> saveorder(FoodOrderModel foodOrderModel) {
+        FoodOrderModel fo = foodOrderRepo.save(foodOrderModel);
+        return Map.of("status", "success",
+                "message", "Order Placed Successfully",
+                "dish", fo.getDisname(),
+                "disprice", fo.getDisprice(),
+                "email", fo.getEmail());
+    }
+
+    public Map<String, Object> getfoods(String email, String name) {
+        List<FoodOrderModel> food = foodOrderRepo.findByEmailAndName(email, name);
+        if (!food.isEmpty()) {
             return Map.of("status", "success",
-                    "message", "Order Placed Successfully",
-                    "dish", fo.getDisname(),
-                    "disprice", fo.getDisprice(),
-                    "email",fo.getEmail());
+                    "data", food);
+        } else {
+            return Map.of("status", "failed",
+                    "message", "no food orders found");
         }
 
+    }
 }
