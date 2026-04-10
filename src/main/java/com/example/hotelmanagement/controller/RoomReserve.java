@@ -5,6 +5,7 @@ import com.example.hotelmanagement.service.RoomReservedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoomReserve {
 @Autowired
     private RoomReservedService roomReservedService;
+@PostMapping("/reserved")
 public ResponseEntity<?>reservroom(@RequestBody RoomReservedModel roomReservedModel){
     return ResponseEntity.ok(roomReservedService.resroom(roomReservedModel));
 }
